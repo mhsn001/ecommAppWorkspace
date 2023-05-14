@@ -1,0 +1,28 @@
+server:
+ port: 8080
+ 
+ 
+spring:
+ datasource:
+  url: jdbc:mysql://${DB_HOST:localhost}:3306/productdb
+  username: root
+  password: Kutubminar@1
+  driverClassName: com.mysql.cj.jdbc.Driver
+ jpa:
+   hibernate:
+    ddl-auto: update
+ application: 
+  name: PRODUCT-SERVICE
+ config:
+  import: configserver:http://localhost:9296 
+
+#Added below configuration in config server which is common for all microservices
+    
+#eureka:
+#  client:
+#   register-with-eureka: true
+#  fetch-registry: true
+#   service-url:
+#   defaultZone: http://localhost:8761/eureka/
+#  instance:
+#   hostname: localhost
