@@ -38,6 +38,21 @@ Now we need to return error in response from the controller to end user for that
 	- check class RestResponseEntityExceptionHandler 
 
 
+CircuiteBreaker configuration in order service
+==============================================
+Order service is internally calling payment service and product service. thats why we need to configure circuitBreaker on order service.
+
+First of all add the dependency in pom.xml 
+	
+		<dependency>
+	      <groupId>org.springframework.cloud</groupId>
+	      <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+	    </dependency>
+
+
+
+
+
 
 08-May-2023 
 --------------
