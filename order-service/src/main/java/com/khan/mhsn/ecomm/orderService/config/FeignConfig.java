@@ -11,6 +11,7 @@ import feign.codec.ErrorDecoder;
 public class FeignConfig {
 
 	
+	
 	@Bean
 	ErrorDecoder errorDecoder() {
 		return new CustomErrorDecoder();

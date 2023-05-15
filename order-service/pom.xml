@@ -63,6 +63,13 @@
 	      <groupId>org.springframework.cloud</groupId>
 	      <artifactId>spring-cloud-sleuth-zipkin</artifactId>
 	    </dependency>
+	    
+	    		<!-- Added dependency for resilience4j circuit breaker. this application is not a
+		 reactor application thats why we are using default version of resilienc34j dependency -->
+		<dependency>
+	      <groupId>org.springframework.cloud</groupId>
+	      <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+	    </dependency>
 		
 	</dependencies>
 	<dependencyManagement>
