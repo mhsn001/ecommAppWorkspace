@@ -17,17 +17,17 @@ public class CustomErrorDecoder implements ErrorDecoder{
 	public Exception decode(String methodKey, Response response) {
 		
 		ObjectMapper mapper = new ObjectMapper();
-				
-		log.info(":: {}" , response.request().url());
-		log.info(":: {}" , response.request().headers());
+		log.error("Facing issus while calling following API : {}", response.request().url());
+		log.info("Decoding the error");
+			
 	
-		
 		try {
 			ErrorResponse responseError = mapper.readValue(response.body().asInputStream(), ErrorResponse.class);
+			log.info("Decoded the error");
 			return new CustomeException(responseError.getErrorMessage(), responseError.getErrorCode(), response.status());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new CustomeException("Internal Server Error", "INTERNAL_SERVER_ERROR", 500);
+			log.warn("Error decoding failed, there is some issue");
+			throw new CustomeException("Internal Server Error : "+e.getMessage(), "INTERNAL_SERVER_ERROR", 500);
 		}
 		
 		
