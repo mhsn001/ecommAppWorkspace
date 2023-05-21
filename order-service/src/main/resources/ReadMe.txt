@@ -65,7 +65,7 @@ resilience4j:
  circuitbreaker:
   instances:
    external:
-    event-consumer-buffer-size: 10
+    event-consumer-buffer-size: 10 # A circular array of size 10, this array will save the aggregated outcome of the calls
     failure-rate-threshold: 50 # 50%
     minimum-number-of-calls: 3 # minimum 3 calls to check if service is really down
     automatic-transition-from-open-to-half-open-enabled: true 
@@ -97,6 +97,29 @@ There are three states of circuit breaker as shown below
 	1. Open (when circuit is broken)
 	2. Half-open (when circuit is partially closed)
 	3. close (all good)
+
+
+CircuitBreaker in API gateway 
+=================================
+We need to add filter for circuit breaker and added a Fallback controller
+
+spring:
+ application: 
+  name: API-GATEWAY
+ config:
+  import: configserver:http://localhost:9296  
+ cloud:
+  gateway:
+   routes:
+    - id: ORDER-SERVICE
+      uri: lb://ORDER-SERVICE
+      predicates: 
+       - Path=/orders/**
+      filters: # Added filter for resilience4J circuit breaker
+       - name: CircuitBreaker
+         args:
+          name: ORDER-SERVICE
+          fallbackuri: forward:/orderServiceFallback 
 
 
 ===============
