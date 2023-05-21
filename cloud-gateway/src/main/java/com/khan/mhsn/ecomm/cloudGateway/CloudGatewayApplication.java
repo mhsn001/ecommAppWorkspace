@@ -19,6 +19,7 @@ public class CloudGatewayApplication {
 	}
 	// Adding this configuration so that spring will know about the circuit breaker that we added. 
 	// So that means whatever configuration is added in application.yaml file this will be added to the context. 
+	//This bean configuration can be done by application.yaml file. See the application.yaml file of order-service  
 	@Bean
 	public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer(){
 		return factory -> factory.configureDefault(
