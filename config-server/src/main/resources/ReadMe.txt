@@ -1,4 +1,4 @@
-API-GATEWAY will be the kind of proxy for all serviced. See below the configuration for only routing the requests for all microservices 
+API-GATEWAY will be the kind of proxy for all services. See below the configuration for only routing the requests for all microservices 
 
 spring:
  application: 

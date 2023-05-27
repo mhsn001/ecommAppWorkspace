@@ -66,6 +66,21 @@
 	      <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
 	    </dependency>
 		
+	<!--START: Spring authentication using okta -->
+		
+		<dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-security</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.okta.spring</groupId>
+	      <artifactId>okta-spring-boot-starter</artifactId>
+	      <version>3.0.3</version>
+	    </dependency>
+    
+    <!--END: Spring authentication using okta -->
+		
+		
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

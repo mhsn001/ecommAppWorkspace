@@ -3,6 +3,7 @@ package com.khan.mhsn.ecomm.orderService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,12 +28,14 @@ public class OrderServiceController {
 		return "Hey " + name + " ! Greetings From Order service :)";
 	}
 	
+	@PreAuthorize("hasAuthority('Customer')")
 	@PostMapping("/create")
 	public ResponseEntity<Long> createOrder(@RequestBody OrderRequest orderRequest) {
 		long orderId = orderService.createOrder(orderRequest);
 		return new ResponseEntity<>(orderId,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer')")
 	@GetMapping("/{orderId}")
 	public ResponseEntity<GetOrderResponse> getOrderById(@PathVariable long orderId) {
 		

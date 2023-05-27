@@ -36,5 +36,13 @@ spring:
          args:
           name: PRODUCT-SERVICE
           fallbackuri: forward:/productServiceFallback 
-       
+          
+# Okta configuration           
+okta:
+ oauth2:
+  issuer: https://dev-30717030.okta.com/oauth2/default
+  audience: api://default
+  client-id: 0oa9n7as0ye9qQyYW5d7
+  client-secret: wG2vVFMi8L277KWpArpWoc1f-x0efQzyak0tquc_  
+  scopes: openid, profile, email, offline_access
        

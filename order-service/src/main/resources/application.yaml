@@ -15,8 +15,24 @@ spring:
   name: ORDER-SERVICE
  config:
   import: configserver:http://localhost:9296 
-  
- 
+ security: # Spring security 
+  oauth2: 
+   resourceserver:
+    jwt: 
+     issuer-uri: https://dev-30717030.okta.com/oauth2/default
+   client: 
+    registration: 
+     internal-client:
+      provider: okta 
+      authorization-grant-type: client_credentials 
+      scope: internal 
+      client-id: 0oa9n7as0ye9qQyYW5d7
+      client-secret: wG2vVFMi8L277KWpArpWoc1f-x0efQzyak0tquc_  
+    provider: 
+     okta: 
+      issuer-uri: https://dev-30717030.okta.com/oauth2/default
+      
+      
 #Added below configuration in config server which is common for all microservices      
 #eureka:
 #  client:

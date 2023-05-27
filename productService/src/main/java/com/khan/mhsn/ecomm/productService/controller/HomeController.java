@@ -3,6 +3,7 @@ package com.khan.mhsn.ecomm.productService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +33,14 @@ public class HomeController {
 		return "Hello "+ name +" :)";
 	}
 	
+	@PreAuthorize("hasAuthority('Admin')")
 	@PostMapping("/add")
 	public ResponseEntity<Long> addProduct(@RequestBody ProductRequset request){
 		long pId = productService.addProduct(request);
 		return new ResponseEntity<>(pId, HttpStatus.CREATED);
 	}
 	
+	@PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
 	@GetMapping("{id}")
 	public ResponseEntity<ProductResponse> getProductById(@PathVariable("id") long id){
 		
