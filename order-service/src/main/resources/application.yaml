@@ -1,6 +1,18 @@
 server:
  port: 8081
  
+management:
+ health:
+  circuitbreakers:
+   enabled: true
+ endpoints:
+  web:
+   exposure:
+    include: health
+ endpoint: 
+  health: 
+   show-details: always
+ 
  
 spring:
  datasource:
@@ -32,7 +44,22 @@ spring:
      okta: 
       issuer-uri: https://dev-30717030.okta.com/oauth2/default
       
-      
+
+resilience4j:
+ circuitbreaker:
+  instances:
+   order-service:
+    registerHealthIndicator: true
+    event-consumer-buffer-size: 10
+    failure-rate-threshold: 50
+    minimum-number-of-calls: 3
+    automatic-transition-from-open-to-half-open-enabled: true
+    wait-duration-in-open-state: 5s
+    permitted-number-of-calls-in-half-open-state: 3 
+    sliding-window-size: 10 
+    sliding-window-type: COUNT_BASED  
+ 
+ 
 #Added below configuration in config server which is common for all microservices      
 #eureka:
 #  client:
