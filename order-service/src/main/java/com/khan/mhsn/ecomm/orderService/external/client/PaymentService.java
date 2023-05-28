@@ -20,7 +20,7 @@ public interface PaymentService {
 	
 	// Circuit breaker annotation should be specific to each api because return type of fallback method should be same as api return type
 	@CircuitBreaker(name = "order-service", fallbackMethod = "fallbackDoPayment")
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<Long> doPayment(@RequestBody PaymentRequest request);
 	
 	// return type should be same as daPayment(..) api

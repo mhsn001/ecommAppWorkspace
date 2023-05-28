@@ -15,7 +15,7 @@ public class OAuthrequestInterceptor implements RequestInterceptor{
 
 	@Autowired
 	OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager;
-	
+		
 	@Override
 	public void apply(RequestTemplate template) {
 		

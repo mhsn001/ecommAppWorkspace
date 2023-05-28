@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 
 import lombok.extern.log4j.Log4j2;
 
+
 @Log4j2
 public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
 

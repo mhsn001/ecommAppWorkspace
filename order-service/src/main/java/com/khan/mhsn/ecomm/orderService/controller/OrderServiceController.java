@@ -28,7 +28,7 @@ public class OrderServiceController {
 		return "Hey " + name + " ! Greetings From Order service :)";
 	}
 	
-	@PreAuthorize("hasAuthority('Customer')")
+	@PreAuthorize("hasAuthority('Customer') || hasAuthority('Admin') || hasAuthority('SCOPE_internal')")
 	@PostMapping("/create")
 	public ResponseEntity<Long> createOrder(@RequestBody OrderRequest orderRequest) {
 		long orderId = orderService.createOrder(orderRequest);

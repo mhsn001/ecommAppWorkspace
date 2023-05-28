@@ -48,6 +48,7 @@ public class HomeController {
 		return new ResponseEntity<ProductResponse>(res,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
 	@PutMapping("/reduceQuantity/{id}")
 	public ResponseEntity<Void> reduceQuantity(@PathVariable("id") long productId, @RequestParam("quantity") long quantity){
 		

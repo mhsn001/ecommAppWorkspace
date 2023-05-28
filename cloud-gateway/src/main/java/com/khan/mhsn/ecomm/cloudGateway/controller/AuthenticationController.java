@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.khan.mhsn.ecomm.cloudGateway.model.AuthenticationResponse;
 
+import lombok.extern.log4j.Log4j2;
+
 @RestController
 @RequestMapping("/authenticate")
+@Log4j2
 public class AuthenticationController {
 
 	@GetMapping("/login")
@@ -38,7 +41,7 @@ public class AuthenticationController {
 							.collect(Collectors.toList())
 							)
 					.build();
-					
+					log.info("LOG IN API : "+authenticationResponse.toString());
 					return new ResponseEntity<>(authenticationResponse, org.springframework.http.HttpStatus.OK); 
 		
 	}

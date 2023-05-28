@@ -18,7 +18,7 @@ public class PaymentServiceController {
 	@Autowired
 	PaymentService paymentService;
 	
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<Long> doPayment(@RequestBody PaymentRequest request){
 		
 		Long paymentId = paymentService.doPayment(request);

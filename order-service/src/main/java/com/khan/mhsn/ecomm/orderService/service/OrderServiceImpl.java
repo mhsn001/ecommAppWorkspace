@@ -45,11 +45,11 @@ public class OrderServiceImpl implements OrderService {
 		
 		//check and reducing the product quantity
 		
-		log.info("Calling Reducing the quantity. ");
+		log.info("1. Calling Reducing the quantity.  ");
 		productService.reduceQuantity(orderRequest.getProductId(), orderRequest.getQuantity());
-		
+		log.info("1.1 Completed Reducing the quantity.  ");
 		// Saving the order 
-		log.info("Saving the order");
+		log.info("2. Saving the order");
 		
 		Order order = new Order().builder()
 				.productId(orderRequest.getProductId())
@@ -61,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 
 		order = orderRepository.save(order);
 		
-		log.info("Calling payment service for order : {}", order.getOrderId());
+		log.info("3. Calling payment service for order : {}", order.getOrderId());
 				
 		//Making the payment 
 		PaymentRequest paymentrequest = new PaymentRequest().builder()
@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 		String orderStatus = null;
 		try {
 			paymentService.doPayment(paymentrequest);
-			log.info("Payment placed successfuly!");
+			log.info("4. Payment placed successfuly!");
 			orderStatus = "COMPLETED";
 						
 		}catch(Exception e) {
